@@ -1,0 +1,58 @@
+﻿@model IEnumerable<IEXTrading.Models.Stock>
+<h2>Top stocks to buy</h2>
+<hr />
+<p>Selection criteria:</p>
+<p>- Price reversal detection tool</p>
+<p>- Common shares only (no preferred shares, ADRs etc.)</p>
+<p>- Market capitalization greater than or equal to $300m</p>
+<p>- Price drop within last 12 months</p>
+<p>- Price growth within last 5 days</p>
+<p>- Sorted by biggest price drop for the last 12 months (the higher the drop the higher potential reversal movement)</p>
+<p>- Pool of stocks to choose from is capped at 200 items to keep adequate performance</p>
+<p></p>
+<hr />
+<p></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Symbol
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                1 year price change
+            </th>
+            <th>
+                5 day price change
+            </th>
+            <th>
+                Market Capitalization
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.symbol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.companyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.year1ChangePercent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.day5ChangePercent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.marketcap)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
